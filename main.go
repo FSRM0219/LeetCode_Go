@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"linkedlist"
 	"slices"
 )
 
@@ -21,5 +23,6 @@ func groupAnagrams(strs []string) [][]string {
 }
 
 func main() {
-
+	pre := &linkedlist.ListNode{Val: 666}
+	fmt.Println(pre.Val)
 }
