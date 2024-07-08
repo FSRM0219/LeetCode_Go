@@ -20,31 +20,6 @@ func groupAnagrams(strs []string) [][]string {
 	return ans
 }
 
-func longestConsecutive(nums []int) int {
-	var ans int
-	dict := make(map[int]bool)
-	for _, num := range nums {
-		dict[num] = true
-	}
-	for _, num := range nums {
-		cnt := 0
-		if dict[num] {
-			cnt++
-			dict[num] = false
-			for cur := num - 1; dict[cur]; cur-- {
-				dict[cur] = false
-				cnt++
-			}
-			for cur := num + 1; dict[cur]; cur++ {
-				dict[cur] = false
-				cnt++
-			}
-		}
-		ans = max(ans, cnt)
-	}
-	return ans
-}
-
 func main() {
 
 }
