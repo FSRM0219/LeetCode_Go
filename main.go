@@ -22,6 +22,23 @@ func groupAnagrams(strs []string) [][]string {
 	return ans
 }
 
+func countPrimes(n int) int {
+	var ans int
+	isPrime := make([]bool, n)
+	for i := 0; i < n; i++ {
+		isPrime[i] = true
+	}
+	for i := 2; i < n; i++ {
+		if isPrime[i] {
+			ans++
+		}
+		for j := 2 * i; j < n; j += i {
+			isPrime[j] = false
+		}
+	}
+	return ans
+}
+
 func main() {
 	pre := &linkedlist.ListNode{Val: 666}
 	fmt.Println(pre.Val)
