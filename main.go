@@ -22,18 +22,25 @@ func groupAnagrams(strs []string) [][]string {
 	return ans
 }
 
-func countPrimes(n int) int {
-	var ans int
-	isPrime := make([]bool, n)
-	for i := 0; i < n; i++ {
-		isPrime[i] = true
+func findAnagrams(s string, p string) []int {
+	ls, lp := len(s), len(p)
+	if ls < lp {
+		return []int{}
 	}
-	for i := 2; i < n; i++ {
-		if isPrime[i] {
-			ans++
-		}
-		for j := 2 * i; j < n; j += i {
-			isPrime[j] = false
+	var ans []int
+	var cnts, cntp [26]int
+	for i, c := range p {
+		cntp[c-'a']++
+		cnts[s[i]-'a']++
+	}
+	if cntp == cnts {
+		ans = append(ans, 0)
+	}
+	for i := 0; i < ls-lp; i++ {
+		cnts[s[i]-'a']--
+		cnts[s[i+lp]-'a']++
+		if cntp == cnts {
+			ans = append(ans, i+1)
 		}
 	}
 	return ans
